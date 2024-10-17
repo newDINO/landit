@@ -14,7 +14,14 @@ mod ui;
 pub fn run() {
     App::new()
         .add_plugins((
-            DefaultPlugins,
+            DefaultPlugins.set(WindowPlugin {
+                primary_window: Some(Window {
+                    name: Some("Land it!".to_owned()),
+                    canvas: Some("#myCanvas".to_owned()),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            }),
             PhysicsPlugins::default(),
             EguiPlugin,
             ui_plugin,

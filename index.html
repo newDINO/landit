@@ -2,9 +2,25 @@
 <head>
     <title>Land it!</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body style="margin: 0px;">
+    <canvas id="myCanvas"></canvas>
     <script type="module">
+        const canvas = document.getElementById('myCanvas');
+        
+        function resizeCanvas() {
+            const width = canvas.clientWidth;
+            const height = canvas.clientHeight;
+            
+            canvas.width = width;
+            canvas.height = height;
+        
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        
         import init from "./pkg/landit.js";
         init().then(() => {
         });
