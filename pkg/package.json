@@ -1,0 +1,15 @@
+{
+  "name": "landit",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "landit_bg.wasm",
+    "landit.js",
+    "landit.d.ts"
+  ],
+  "main": "landit.js",
+  "types": "landit.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
