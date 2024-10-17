@@ -1,0 +1,18 @@
+[package]
+name = "landit"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+bevy = "*"
+avian3d = "*"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+bevy_egui = "*"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen = "*"
+bevy_egui = { version = "*", default-features = false, features = ["default_fonts", "render", "open_url"]}

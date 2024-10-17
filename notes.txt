@@ -1,0 +1,4 @@
+Issues:
+1. When using mold for linux linking, switching between compiling for wasm and native will cause the compilation to start from the beginning.
+2. Spot lights and Directional lights does not support shadow on webgl in chromium linux.
+3. Running in firefox cause shader translation error.
