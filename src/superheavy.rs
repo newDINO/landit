@@ -28,7 +28,23 @@ fn setup(
         },
         ExternalForce::ZERO.with_persistence(false),
         ColliderDensity(100.0),
-        Collider::cylinder(super_heavy_r, super_heavy_h),
+        Collider::compound(vec![
+            (
+                Vec3::ZERO,
+                Quat::IDENTITY,
+                Collider::cylinder(super_heavy_r, super_heavy_h),
+            ),
+            (
+                Vec3::new(0.0, super_heavy_h * 0.3, -super_heavy_r),
+                Quat::IDENTITY,
+                Collider::cuboid(0.5, 0.5, 1.5),
+            ),
+            (
+                Vec3::new(0.0, super_heavy_h * 0.3, super_heavy_r),
+                Quat::IDENTITY,
+                Collider::cuboid(0.5, 0.5, 1.5),
+            ),
+        ]),
         // LockedAxes::new()
         //     .lock_rotation_x()
         //     .lock_rotation_y()
@@ -59,7 +75,11 @@ fn draw_flame(
     let length = super_heavy.thrust * 100.0;
     let endx = super_heavy.angle.sin() * length;
     let endy = start.y - super_heavy.angle.cos() * length;
-    gizmo.arrow(transform * start, transform * Vec3::new(endx, endy, 0.0), Color::WHITE);
+    gizmo.arrow(
+        transform * start,
+        transform * Vec3::new(endx, endy, 0.0),
+        Color::WHITE,
+    );
 }
 
 fn apply_engine_force(
